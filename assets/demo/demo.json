@@ -1,0 +1,30 @@
+{
+  "avertissement": "Démonstration synthétique générée par tools/make_demo_media.py : aucune personne filmée, aucun client.",
+  "source_duree_s": 120,
+  "clips": [
+    {
+      "numero": 1,
+      "debut_s": 15.0,
+      "fin_s": 49.7,
+      "duree_s": 34.7,
+      "lufs": -15.8,
+      "accroche": "Pourquoi une vidéo longue ne suffit plus ?"
+    },
+    {
+      "numero": 2,
+      "debut_s": 50.0,
+      "fin_s": 84.7,
+      "duree_s": 34.7,
+      "lufs": -15.7,
+      "accroche": "Sur un épisode de 45 minutes,"
+    },
+    {
+      "numero": 3,
+      "debut_s": 85.0,
+      "fin_s": 119.7,
+      "duree_s": 34.7,
+      "lufs": -15.8,
+      "accroche": "On coupe les silences et les hésitations."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+/* Habillage Halloween temporaire (Issue #6) — actif uniquement si <html data-saison="halloween">.
+   Sans cet attribut (après le 6 novembre 2026, ou désactivé dans saison-config.js), ce fichier n'a aucun effet.
+   Décor : CSS et SVG locaux. Animations sur transform/opacity uniquement ; aucune en mouvement réduit. */
+
+html[data-saison="halloween"] {
+  --pumpkin: #ff7a1a;
+  --pumpkin-soft: rgba(255, 122, 26, .22);
+}
+
+/* Halo ambre/orange plus chaud sur les zones d'éclairage existantes */
+html[data-saison="halloween"] body {
+  background: radial-gradient(120% 60% at 50% 0%, #1b3a3a 0%, #0e2a2e 36%, #08161a 78%) #07161a;
+}
+html[data-saison="halloween"] .hero .spot {
+  background: radial-gradient(50% 55% at 50% 42%, rgba(255, 140, 30, .38), rgba(226, 87, 44, .14) 45%, transparent 70%);
+}
+html[data-saison="halloween"] .closing { background: radial-gradient(60% 70% at 50% 60%, rgba(255, 122, 26, .30), transparent 70%); }
+html[data-saison="halloween"] .screen .main .frame,
+html[data-saison="halloween"] .poster .frame { box-shadow: 0 30px 90px rgba(0,0,0,.65), 0 0 0 1px rgba(255,122,26,.35), 0 0 60px rgba(255,122,26,.18); }
+
+/* Brume au ras du sol, derrière le contenu */
+.hw-brume { position: fixed; left: 0; right: 0; bottom: 0; height: 46vh; z-index: -1; pointer-events: none; overflow: hidden; }
+.hw-brume i { position: absolute; inset: 0 -30% 0 -30%; display: block;
+  background:
+    radial-gradient(40% 60% at 20% 100%, rgba(242,237,228,.10), transparent 70%),
+    radial-gradient(35% 55% at 55% 100%, rgba(53,201,188,.08), transparent 70%),
+    radial-gradient(45% 65% at 85% 100%, rgba(242,237,228,.08), transparent 70%);
+  animation: hw-derive 46s ease-in-out infinite alternate; }
+.hw-brume i + i { opacity: .7; transform: scaleX(-1); animation-duration: 63s; animation-direction: alternate-reverse; }
+@keyframes hw-derive { to { translate: 12% 0; } }
+
+/* Scène du hero : lune, toile, chauves-souris (sous les titres et les clips) */
+.hw-scene { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+html[data-saison="halloween"] .hero > :not(.hw-scene):not(.spot) { position: relative; z-index: 1; }
+/* Sous la ligne du surtitre, au-dessus de « mérite sa » : zone libre de texte de 1024 à 1920 px (vérifié par calcul) */
+.hw-lune { position: absolute; top: 78px; right: 6%; width: clamp(100px, 11vw, 170px); aspect-ratio: 1; border-radius: 50%;
+  filter: drop-shadow(0 0 40px rgba(255, 170, 60, .55)) drop-shadow(0 0 120px rgba(255, 122, 26, .35)); opacity: .92; }
+.hw-lune svg { width: 100%; height: 100%; }
+.page-hero .hw-lune { top: 10%; right: 22%; width: clamp(90px, 10vw, 170px); opacity: .7; }
+.hw-toile { position: absolute; top: 0; left: 0; width: clamp(90px, 10vw, 160px); color: rgba(242, 237, 228, .22); }
+.hw-cs { position: absolute; color: #050b0d; width: 54px; animation: hw-vol 18s ease-in-out infinite; }
+.hw-cs > span { display: block; animation: hw-aile .32s ease-in-out infinite alternate; transform-origin: 50% 40%; }
+.hw-cs svg { width: 100%; filter: drop-shadow(0 0 1px rgba(255, 170, 60, .6)); }
+.hw-cs1 { top: 9%; right: 14%; width: 46px; }
+.hw-cs2 { top: 20%; right: 4%; width: 30px; animation-delay: -6s; animation-duration: 22s; }
+.hw-cs3 { top: 6%; left: 22%; width: 34px; animation-delay: -11s; animation-duration: 20s; }
+.hw-cs4 { top: 30%; left: 6%; width: 24px; animation-delay: -3s; animation-duration: 26s; }
+@keyframes hw-vol { 0%, 100% { transform: translate(0, 0) rotate(-4deg); } 25% { transform: translate(-40px, 18px) rotate(3deg); } 50% { transform: translate(-12px, -14px) rotate(-2deg); } 75% { transform: translate(30px, 10px) rotate(4deg); } }
+@keyframes hw-aile { from { transform: scaleY(1); } to { transform: scaleY(.55); } }
+
+html[data-saison="halloween"] .billing .credit::after { content: " · Séance spéciale Halloween"; color: var(--pumpkin); }
+
+@media (max-width: 760px) {
+  /* Lune à demi hors cadre, en haut à droite : le surtitre garde une marge et ne passe jamais dessus */
+  .hw-lune { top: 8px; right: -26px; width: 76px; opacity: .85; }
+  html[data-saison="halloween"] .hero > .pre, html[data-saison="halloween"] .page-hero .pre { padding-right: 56px; }
+  .page-hero .hw-lune { right: -22px; top: 8px; width: 66px; }
+  .hw-cs3, .hw-cs4 { display: none; }
+  .hw-toile { width: 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hw-brume i, .hw-cs, .hw-cs > span { animation: none !important; }
+}

@@ -1,0 +1,59 @@
+/* GUIZCUT — accueil « studio » : images réelles (miniatures officielles de Shorts de référence), sans décor synthétique */
+.studio-hero { padding: clamp(28px, 4vw, 56px) 0 clamp(40px, 5vw, 72px); }
+.studio-hero::before { opacity: .55; }
+.studio-hero .wrap { grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); gap: 20px clamp(32px, 5vw, 80px); align-items: center;
+  min-height: min(calc(100svh - var(--header-h, 72px) - 40px), 820px); }
+.studio-texte { position: relative; z-index: 2; }
+.studio-hero h1 { font-size: clamp(2.9rem, 5.6vw, 6.2rem); line-height: 1.02; text-transform: uppercase; letter-spacing: .005em;
+  animation: studio-entree .8s var(--ease, ease) both; }
+.studio-hero h1 em { display: block; text-transform: none; font-size: .92em; line-height: 1.04; margin-top: .06em; }
+.studio-hero .lead { max-width: 46ch; animation: studio-entree .8s .12s var(--ease, ease) both; }
+.studio-hero .actions { display: flex; flex-wrap: wrap; gap: 12px; animation: studio-entree .8s .22s var(--ease, ease) both; }
+.studio-prix { margin-top: 14px; letter-spacing: .02em; }
+@keyframes studio-entree { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Mur de Shorts : trois colonnes qui défilent lentement, en sens opposés */
+.reel { position: relative; height: clamp(480px, 74vh, 780px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 16px);
+  overflow: hidden; transform: rotate(-3deg); border-radius: 18px;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); }
+.reel-col { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(10px, 1.2vw, 16px); align-content: start;
+  animation: reel-defile 56s linear infinite; will-change: transform; }
+.reel-col2 { animation-direction: reverse; animation-duration: 64s; margin-top: -30%; }
+.reel-col3 { animation-duration: 60s; margin-top: -12%; }
+.reel-col li { aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #0b1d22;
+  box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(242,237,228,.08); }
+.reel-col img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.95) brightness(.86); }
+.reel:hover .reel-col { animation-play-state: paused; }
+@keyframes reel-defile { to { transform: translateY(-50%); } }
+.reel-credit { grid-column: 2; margin: 4px 0 0; font: 500 .7rem/1.5 var(--mono); letter-spacing: .03em; color: rgba(242,237,228,.58); text-align: center; }
+
+/* Décryptage d'un Short de référence */
+.decrypt { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.decrypt-image { margin: 0; justify-self: center; width: min(100%, 340px); }
+.decrypt-image img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; display: block;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(242,237,228,.12); }
+.decrypt-image figcaption { margin-top: 10px; text-align: center; font: 500 .7rem/1.4 var(--mono); color: rgba(242,237,228,.58); }
+.decrypt-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.decrypt-liste li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(242,237,228,.12); }
+.decrypt-liste li:last-child { border-bottom: 0; }
+.decrypt-liste span { font: 400 2rem/1 var(--display); color: var(--gold); }
+.decrypt-liste h3 { margin: 0 0 6px; font-size: clamp(1.05rem, 1.4vw, 1.25rem); }
+.decrypt-liste p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+@media (max-width: 900px) {
+  .studio-hero .wrap { grid-template-columns: 1fr; min-height: 0; }
+  .reel { height: 340px; transform: none; margin: 8px calc(var(--pad) * -1) 0; border-radius: 0; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reel-credit { grid-column: 1; text-align: left; }
+  .studio-hero .actions .btn { flex: 1 1 100%; text-align: center; }
+  .decrypt { grid-template-columns: 1fr; }
+  .decrypt-image { width: min(70vw, 300px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel-col { animation: none; }
+  .studio-hero h1, .studio-hero .lead, .studio-hero .actions { animation: none; }
+}
+
+/* Saison : la lune ne doit pas passer derrière les visages du mur */
+.studio-hero .hw-lune { right: auto; left: 47%; top: 3%; width: clamp(60px, 6vw, 96px); opacity: .6; }
+@media (max-width: 900px) { .studio-hero .hw-lune { left: auto; right: -18px; top: 6px; width: 60px; } }

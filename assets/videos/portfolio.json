@@ -1,0 +1,4 @@
+{
+  "_aide": "Liste vide = aucun clip réel publié (le site affiche un message, jamais de faux titres). Ajouter ici uniquement des clips réels autorisés par écrit : {id, titre, description, categorie (Gaming & Streams | Podcasts | YouTube & Créateurs), duree, format, fichier, affiche, createur (nom public du créateur, affiché « Réalisation GUIZCUT · vidéo de … »)}. Uniquement des montages faits par GUIZCUT, jamais une référence externe. Voir docs/INTEGRATION_PORTFOLIO.md.",
+  "clips": []
+}
