@@ -313,6 +313,12 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .site-footer a { text-decoration: none; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 22px; border-top: 1px solid var(--faint); font: 500 .72rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+/* Réseaux GUIZCUT : liens visibles au pied de page des versions FR et EN. */
+.footer-social { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin: 0 0 22px; }
+.footer-social span { font: 500 .75rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-right: 8px; }
+.footer-social a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 8px 14px; color: var(--bone); border: 1px solid var(--faint); border-radius: 999px; transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease); }
+.footer-social a:hover { color: var(--gold); border-color: var(--gold); background: rgba(255,176,0,.06); }
+
 .mobile-cta { display: none; }
 
 /* ---------- Apparition au défilement ---------- */
