@@ -230,7 +230,7 @@
         var n = Number(v);
         if (!v || isNaN(n) || n <= 0) return T("Indiquez la durée de la vidéo en minutes.", "Enter the video length in minutes.");
         // La limite ne vaut que pour la séance pilote ; au-delà, on monte le passage indiqué dans les consignes (FAQ Tarifs)
-        if (n <= MAX_MIN || f.elements.formule.value !== "pilote-49") return true;
+        if (n <= MAX_MIN || f.elements.formule.value !== "pilote-29") return true;
         return f.elements.consignes.value.trim().length >= 5 ||
           T("Vidéo de plus de " + MAX_MIN + " min : indiquez dans les consignes le passage à monter (" + MAX_MIN + " min maximum), ou choisissez la demande de devis.",
             "Video longer than " + MAX_MIN + " min: in the notes, tell us which part to edit (" + MAX_MIN + " min maximum), or choose the quote request.");
@@ -269,7 +269,8 @@
     });
     // Formule présélectionnée depuis les boutons de la page Tarifs (contact.html?formule=devis#commande)
     var formuleDemandee = (window.location.search.match(/[?&]formule=([\w-]+)/) || [])[1];
-    if (formuleDemandee === "pilote-49" || formuleDemandee === "devis") f.elements.formule.value = formuleDemandee;
+    if (formuleDemandee === "pilote-49") formuleDemandee = "pilote-29"; // anciens liens : même séance pilote, nouveau tarif
+    if (formuleDemandee === "pilote-29" || formuleDemandee === "devis") f.elements.formule.value = formuleDemandee;
 
     f.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -349,8 +350,8 @@
   /** Prépare la demande (texte, objet, lien mailto). Le site ne stocke rien. */
   function construireDemande(f) {
       var formules = EN
-        ? { "pilote-49": "Pilot session — 3 clips, €49 excl. VAT", "devis": "Volume — quote request" }
-        : { "pilote-49": "Séance pilote — 3 clips, 49 € HT", "devis": "Volume — demande de devis" };
+        ? { "pilote-29": "Pilot session — 3 clips, €29 excl. VAT", "devis": "Volume — quote request" }
+        : { "pilote-29": "Séance pilote — 3 clips, 29 € HT", "devis": "Volume — demande de devis" };
       var E = f.elements;
       var formule = formules[E.formule.value] || E.formule.value;
       var corps = (EN ? [
