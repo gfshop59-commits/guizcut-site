@@ -1,5 +1,5 @@
 /* GUIZCUT — scripts du site (seul appel externe : l'envoi direct du formulaire via Web3Forms, si configuré).
-   Les extraits animés de clips.js ne servent plus qu'à fabriquer les médias de démo (tools/render-scenes.mjs). */
+   Les médias de démonstration sont fabriqués hors du site (travail/prospection-registre/tools/render-scenes.mjs). */
 (function () {
   "use strict";
 
@@ -53,7 +53,7 @@
       v.src = src;
       v.controls = true; v.playsInline = true; v.muted = true; v.preload = "auto";
       var poster = p.querySelector("img.poster");
-      if (poster) v.poster = poster.getAttribute("src");
+      if (poster) v.poster = poster.currentSrc || poster.getAttribute("src");
       v.setAttribute("aria-label", btn.getAttribute("aria-label").replace(/^(Lire|Play) /, ""));
       v.addEventListener("error", function () {
         var msg = document.createElement("p");
@@ -116,6 +116,10 @@
       .catch(function () { render([]); });
 
     function render(clips) {
+      // Double sécurité : seul un montage dont la publication publique est attestée par écrit peut s'afficher
+      clips = clips.filter(autorise);
+      var vide = document.getElementById("portfolio-vide");
+      if (vide) vide.hidden = clips.length > 0;
       if (!clips.length) {
         // Aucun faux portfolio : tant qu'aucun clip réel autorisé n'est publié, on l'annonce simplement.
         target.innerHTML = ""; // état vide : le texte d'introduction de la section suffit (pas de répétition)
@@ -209,6 +213,48 @@
     }
   }
 
+  /** Publication publique autorisée par écrit (portfolio.json : autorisation.publication_publique + preuve_ecrite). */
+  function autorise(c) {
+    var a = c && c.autorisation;
+    return !!(a && a.publication_publique === true && typeof a.preuve_ecrite === "string" && a.preuve_ecrite.trim());
+  }
+
+  // ---------- Accueil : emplacement « cas client réel » (désactivé sans autorisation écrite) ----------
+  var casReel = document.querySelector("[data-cas-reel]");
+  if (casReel) {
+    fetch(BASE + "assets/videos/portfolio.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (data) { var c = data.cas_reel; if (c && autorise(c) && c.source && c.source.extrait && (c.clips || []).length) remplirCas(casReel, c); })
+      .catch(function () { /* hors ligne : l'emplacement reste masqué */ });
+  }
+  function remplirCas(sec, c) {
+    var dossier = BASE + "assets/videos/";
+    var champ = function (n) { return sec.querySelector('[data-champ="' + n + '"]'); };
+    if (c.titre) champ("titre").textContent = c.titre;
+    champ("description").textContent = c.description || "";
+    champ("mention").textContent = T("Réalisation GUIZCUT · vidéo de ", "Made by GUIZCUT · video by ") + (c.createur || "") +
+      T(", publiée avec son accord écrit.", ", published with their written consent.");
+    var medias = champ("medias");
+    var fig = function (fichier, affiche, legende, ratio, piste) {
+      var f = document.createElement("figure");
+      var v = document.createElement("video");
+      v.controls = true; v.playsInline = true; v.preload = "none"; v.muted = true;
+      v.style.aspectRatio = ratio; v.style.width = "100%";
+      if (affiche) v.poster = dossier + affiche;
+      v.src = dossier + fichier;
+      v.setAttribute("aria-label", legende);
+      if (piste) { var t = document.createElement("track"); t.kind = "subtitles"; t.srclang = "fr"; t.label = "Français"; t.src = dossier + piste; v.appendChild(t); }
+      var cap = document.createElement("figcaption"); cap.textContent = legende;
+      f.appendChild(v); f.appendChild(cap);
+      return f;
+    };
+    medias.appendChild(fig(c.source.extrait, c.source.affiche, T("Avant · vidéo source ", "Before · source video ") + (c.source.duree || ""), "16 / 9", c.source.sous_titres));
+    c.clips.forEach(function (k, i) {
+      medias.appendChild(fig(k.fichier, k.affiche, T("Après · clip ", "After · clip ") + (i + 1) + (k.duree ? " · " + k.duree : ""), "9 / 16", k.sous_titres));
+    });
+    sec.hidden = false;
+  }
+
   // ---------- Formulaire de demande : envoi direct si configuré, sinon e-mail pré-rempli ----------
   var form = document.getElementById("order-form");
   if (form) initForm(form);
@@ -228,12 +274,14 @@
       },
       duree: function (v) {
         var n = Number(v);
-        if (!v || isNaN(n) || n <= 0) return T("Indiquez la durée de la vidéo en minutes.", "Enter the video length in minutes.");
-        // La limite ne vaut que pour la séance pilote ; au-delà, on monte le passage indiqué dans les consignes (FAQ Tarifs)
-        if (n <= MAX_MIN || f.elements.formule.value !== "pilote-29") return true;
-        return f.elements.consignes.value.trim().length >= 5 ||
-          T("Vidéo de plus de " + MAX_MIN + " min : indiquez dans les consignes le passage à monter (" + MAX_MIN + " min maximum), ou choisissez la demande de devis.",
-            "Video longer than " + MAX_MIN + " min: in the notes, tell us which part to edit (" + MAX_MIN + " min maximum), or choose the quote request.");
+        return (v && !isNaN(n) && n > 0) || T("Indiquez la durée de la vidéo en minutes.", "Enter the video length in minutes.");
+      },
+      // La limite de 45 min ne vaut que pour la séance pilote ; au-delà, on monte le passage indiqué dans les consignes (FAQ Tarifs)
+      consignes: function (v) {
+        if (!trop_longue()) return true;
+        return v.trim().length >= 5 ||
+          T("Votre vidéo dure plus de " + MAX_MIN + " min : indiquez ici le passage à monter (" + MAX_MIN + " min maximum), ou choisissez la demande de devis à l'étape 1.",
+            "Your video is longer than " + MAX_MIN + " min: tell us here which part to edit (" + MAX_MIN + " min maximum), or choose the quote request in step 1.");
       },
       formule: function (v) { return v !== "" || T("Choisissez une formule.", "Choose an offer."); },
       droits: function (_, el) { return el.checked || T("Cette confirmation est nécessaire pour traiter une vidéo.", "We need this confirmation to work on a video."); },
@@ -256,17 +304,57 @@
       return ok;
     }
 
+    function trop_longue() { return f.elements.formule.value === "pilote-29" && Number(f.elements.duree.value) > MAX_MIN; }
+
     Object.keys(rules).forEach(function (name) {
       var el = f.elements[name];
       if (!el) return;
       el.addEventListener("blur", function () { check(name); });
       el.addEventListener("change", function () { if (el.getAttribute("aria-invalid") === "true") check(name); });
     });
-    // La validité de la durée dépend aussi de la formule et des consignes
-    ["formule", "consignes"].forEach(function (name) {
-      var el = f.elements[name];
-      if (el) el.addEventListener("change", function () { if (f.elements.duree.getAttribute("aria-invalid") === "true") check("duree"); });
-    });
+    // Vidéo de plus de 45 min (séance pilote) : avis immédiat sous la durée, la précision se donne à l'étape 2
+    var avis = document.getElementById("a-duree");
+    function majAvis() {
+      if (avis) avis.textContent = trop_longue()
+        ? T("Plus de " + MAX_MIN + " min : à l'étape 2, indiquez le passage à monter (" + MAX_MIN + " min maximum), ou choisissez la demande de devis.",
+            "Over " + MAX_MIN + " min: in step 2, tell us which part to edit (" + MAX_MIN + " min maximum), or choose the quote request.")
+        : "";
+      if (f.elements.consignes.getAttribute("aria-invalid") === "true") check("consignes");
+    }
+    ["duree", "formule"].forEach(function (name) { f.elements[name].addEventListener("change", majAvis); f.elements[name].addEventListener("input", majAvis); });
+
+    // ---- Deux étapes : 1. la vidéo (formule, plateforme, lien, durée) ; 2. consignes, coordonnées et confirmations ----
+    var etapes = [].slice.call(f.querySelectorAll("fieldset[data-etape]"));
+    var etat = document.getElementById("etape-etat");
+    var recap = document.getElementById("recap-etape1");
+    function champsEtape(n) {
+      return Object.keys(rules).filter(function (name) { var el = f.elements[name]; return el && el.closest("fieldset[data-etape]") === etapes[n - 1]; });
+    }
+    function afficherEtape(n, focus) {
+      if (!etapes.length) return;
+      etapes.forEach(function (fs, i) { fs.hidden = i !== n - 1; });
+      f.setAttribute("data-etape-courante", String(n));
+      if (etat) etat.textContent = T("Étape " + n + " sur 2 · ", "Step " + n + " of 2 · ") + etapes[n - 1].querySelector("legend .titre").textContent;
+      if (n === 2 && recap) remplirRecap();
+      if (focus) etapes[n - 1].querySelector("legend").focus();
+    }
+    function remplirRecap() {
+      var E = f.elements, o = E.formule.options[E.formule.selectedIndex];
+      recap.textContent = "";
+      [[T("Formule", "Offer"), o ? o.text : ""], [T("Plateforme", "Platform"), E.plateforme.value],
+       [T("Durée", "Length"), E.duree.value + " min"], [T("Lien", "Link"), E.lien.value.trim() || T("à transmettre plus tard", "to be sent later")]]
+        .forEach(function (l) { var dt = document.createElement("dt"), dd = document.createElement("dd"); dt.textContent = l[0]; dd.textContent = l[1]; recap.appendChild(dt); recap.appendChild(dd); });
+    }
+    function verifier(noms) {
+      var ok = noms.map(check).every(Boolean);
+      if (!ok) { var first = f.querySelector('[aria-invalid="true"]'); if (first) first.focus(); }
+      return ok;
+    }
+    if (etapes.length === 2) {
+      f.querySelector("[data-suivant]").addEventListener("click", function () { if (verifier(champsEtape(1))) afficherEtape(2, true); });
+      f.querySelector("[data-retour]").addEventListener("click", function () { afficherEtape(1, true); });
+      afficherEtape(1, false);
+    }
     // Formule présélectionnée depuis les boutons de la page Tarifs (contact.html?formule=devis#commande)
     var formuleDemandee = (window.location.search.match(/[?&]formule=([\w-]+)/) || [])[1];
     if (formuleDemandee === "pilote-49") formuleDemandee = "pilote-29"; // anciens liens : même séance pilote, nouveau tarif
@@ -277,6 +365,8 @@
       var allOk = Object.keys(rules).map(check).every(Boolean);
       if (!allOk) {
         var first = f.querySelector('[aria-invalid="true"]');
+        var fs = first && first.closest("fieldset[data-etape]");
+        if (fs && fs.hidden) afficherEtape(Number(fs.getAttribute("data-etape")), false);   // erreur dans l'étape masquée : on y revient
         if (first) first.focus();
         result.classList.remove("show");
         return;
@@ -339,6 +429,8 @@
         try { sessionStorage.setItem("gz-envoi", String(Date.now())); } catch (e) { /* stockage indisponible */ }
         afficher(T("Demande envoyée à contact@guizcut.fr.", "Request sent to contact@guizcut.fr."), T("Merci ! Nous vous répondons par e-mail, à l'adresse indiquée. Récapitulatif :", "Thank you! We will reply by email to the address you gave. Summary:"), demande, false);
         f.reset();
+        majAvis();
+        afficherEtape(1, false);
       }).catch(function () {
         afficher(T("Votre demande n'a pas pu être envoyée depuis la page.", "Your request could not be sent from this page."),
           T("Rien n'est perdu : envoyez-la depuis votre messagerie avec le bouton ci-dessous, ou copiez le texte vers contact@guizcut.fr.",
