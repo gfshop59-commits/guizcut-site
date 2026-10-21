@@ -116,3 +116,10 @@
 .gzv-yt.gzv-joue .gzv-media::after, .gzv-yt.gzv-joue .gzv-type { display: none; }
 .p3-note { margin: 18px 0 0; text-align: center; }
 @media (prefers-reduced-motion: reduce) { .gzv-facade img { transition: none; } }
+
+/* Identité « Salle de montage » : lecteurs et Shorts de référence */
+.gzv-media, .p3-carte .gzv-media { border-radius: 8px; box-shadow: 0 0 0 1px var(--ligne-forte), 0 24px 60px rgba(0,0,0,.5); }
+.gzv[data-type="reference"] .gzv-type { background: rgba(10,18,21,.9); border-color: var(--ligne-forte); }
+.gzv-grand { background: var(--tete-lecture); color: #0a0a0a; }
+.p3-cat { color: var(--piste-video); }
+.p3-mention { border-left-color: var(--piste-titres); }
