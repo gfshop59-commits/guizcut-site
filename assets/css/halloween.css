@@ -7,10 +7,7 @@ html[data-saison="halloween"] {
   --pumpkin-soft: rgba(255, 122, 26, .22);
 }
 
-/* Halo ambre/orange plus chaud sur les zones d'éclairage existantes */
-html[data-saison="halloween"] body {
-  background: radial-gradient(120% 60% at 50% 0%, #1b3a3a 0%, #0e2a2e 36%, #08161a 78%) #07161a;
-}
+/* Halo ambre/orange plus chaud sur les zones d'éclairage existantes (le fond du site, lui, reste celui de l'identité) */
 html[data-saison="halloween"] .hero .spot {
   background: radial-gradient(50% 55% at 50% 42%, rgba(255, 140, 30, .38), rgba(226, 87, 44, .14) 45%, transparent 70%);
 }
