@@ -425,20 +425,21 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .big-price small { font: 500 .85rem/1 var(--mono); }
 .poster > .player { margin-bottom: 14px; }
 
-/* ---------- Logo aperture GUIZCUT ----------
-   Ouverture circulaire + bouton play : un signe unique pour la vidéo, le recadrage
-   et la diffusion. Le rouge est réservé au mot-symbole et au symbole. */
-:root { --logo-red: #ff2b45; }
-.logo { align-items: center; gap: 6px; }
-.logo .bar { flex: none; }
+/* ---------- Logo « salle de montage » ----------
+   GUIZ/CUT devient un repère de timeline : deux barres de coupe, une lame or/braise
+   et aucun accent turquoise dans le mot-symbole. */
+.logo .word { letter-spacing: .1em; font-size: 1.6rem; }
+.logo .word b { font-weight: 400; color: var(--gold); }
+.logo .bar { position: relative; height: 3px; }
 .logo .bar:first-child {
-  width: 42px; height: 42px; margin: 0 auto;
-  background: url("../img/logo-mark.svg") center / contain no-repeat;
+  background: linear-gradient(90deg, var(--bone) 0 42%, transparent 42% 46%, var(--gold) 46% 51%, transparent 51% 55%, var(--bone) 55%);
 }
-.logo .bar:last-child { display: none; }
-.logo .word { letter-spacing: .05em; font-size: 1.6rem; color: var(--bone); }
-.logo .word b { margin-left: .08em; font-weight: 400; color: var(--logo-red); }
-.logo i.cut { display: none; }
+.logo .bar:last-child {
+  background: linear-gradient(90deg, var(--bone) 0 61%, transparent 61% 65%, var(--ember) 65% 70%, transparent 70% 74%, var(--bone) 74%);
+}
+.logo i.cut { position: relative; display: inline-block; width: .2em; height: .92em; margin: 0 .16em 0 .12em; vertical-align: -.1em;
+  background: linear-gradient(180deg, var(--gold) 0 48%, var(--ember) 48% 100%); transform: skewX(-20deg); font-size: 1em; }
+.logo i.cut::after { content: ""; position: absolute; inset: -8% 43%; background: var(--fond); transform: rotate(22deg); }
 @media (max-width: 760px) {
   /* Billet de la colonne Contact : talon au-dessus du corps, comme les autres billets sur mobile */
   .form-aside .ticket { grid-template-columns: 1fr; }
