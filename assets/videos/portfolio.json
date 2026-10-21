@@ -1,6 +1,55 @@
 {
-  "_aide": "Liste vide = aucun clip réel publié (le site affiche un message, jamais de faux titres). Ajouter ici uniquement des montages réalisés par GUIZCUT, jamais une référence externe : {id, titre, description, categorie (Gaming & Streams | Podcasts | YouTube & Créateurs), duree, format, fichier, affiche, createur, autorisation}. Un clip ne s'affiche que si autorisation.publication_publique vaut true ET autorisation.preuve_ecrite référence l'accord écrit du créateur (et des personnes filmées), avec sa date. Voir docs/INTEGRATION_PORTFOLIO.md.",
-  "_aide_cas_reel": "Emplacement avant/après de l'accueil, désactivé tant que cas_reel vaut null. Forme : {titre, description, createur, autorisation: {publication_publique: true, preuve_ecrite, date}, source: {extrait (MP4 court), affiche, duree, sous_titres (.vtt facultatif)}, clips: [{fichier, affiche, duree, sous_titres}]}. Mêmes conditions d'autorisation que les clips.",
+  "_aide": "Clips réels réalisés par GUIZCUT et publiés avec l’accord du créateur.",
+  "_aide_cas_reel": "Le cas réel de l’accueil est géré séparément.",
   "cas_reel": null,
-  "clips": []
+  "clips": [
+    {
+      "id": "P01-1",
+      "titre": "Je pense que je suis mort…",
+      "description": "Extrait gaming vertical : une victoire à une seconde près, avec webcam, gameplay et sous-titres incrustés.",
+      "categorie": "Gaming & Streams",
+      "duree": "46,9 s",
+      "format": "1080 × 1920 · 30 i/s",
+      "fichier": "luuxia/clip-1.mp4",
+      "affiche": "luuxia/clip-1.webp",
+      "createur": "LuuxiA",
+      "autorisation": {
+        "publication_publique": true,
+        "preuve_ecrite": "Autorisation explicite de LuuxiA confirmée par le fondateur le 21/10/2026 pour publier la vidéo source et les trois clips.",
+        "date": "2026-10-21"
+      }
+    },
+    {
+      "id": "P01-2",
+      "titre": "Fin de duel contre une mage",
+      "description": "Un passage de duel monté en format vertical, avec rythme de jeu, webcam et sous-titres synchronisés.",
+      "categorie": "Gaming & Streams",
+      "duree": "45,6 s",
+      "format": "1080 × 1920 · 30 i/s",
+      "fichier": "luuxia/clip-2.mp4",
+      "affiche": "luuxia/clip-2.webp",
+      "createur": "LuuxiA",
+      "autorisation": {
+        "publication_publique": true,
+        "preuve_ecrite": "Autorisation explicite de LuuxiA confirmée par le fondateur le 21/10/2026 pour publier la vidéo source et les trois clips.",
+        "date": "2026-10-21"
+      }
+    },
+    {
+      "id": "P01-3",
+      "titre": "Tu vas être choqué par celle-là",
+      "description": "Un moment fort de gameplay transformé en Short vertical, avec accroche, recadrage et sous-titres incrustés.",
+      "categorie": "Gaming & Streams",
+      "duree": "32,6 s",
+      "format": "1080 × 1920 · 30 i/s",
+      "fichier": "luuxia/clip-3.mp4",
+      "affiche": "luuxia/clip-3.webp",
+      "createur": "LuuxiA",
+      "autorisation": {
+        "publication_publique": true,
+        "preuve_ecrite": "Autorisation explicite de LuuxiA confirmée par le fondateur le 21/10/2026 pour publier la vidéo source et les trois clips.",
+        "date": "2026-10-21"
+      }
+    }
+  ]
 }
