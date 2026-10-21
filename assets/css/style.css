@@ -290,7 +290,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .field textarea { min-height: 130px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,176,0,.22); }
 .field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--ember); }
-.field.valid input, .field.valid select { border-color: rgba(53,201,188,.7); }
+.field.valid input, .field.valid select { border-color: rgba(255,176,0,.72); }
 .error { color: #ff9a76; font-size: .86rem; min-height: 1.2em; }
 .check { display: flex; gap: 12px; align-items: flex-start; font-size: .94rem; color: var(--muted); margin: 6px 0 18px; }
 .check input { margin-top: 3px; width: 20px; height: 20px; accent-color: var(--gold); flex: none; }
@@ -638,12 +638,12 @@ h1 em, h2 em, .accent { color: var(--piste-titres); }
 .offre-resume { border-color: var(--ligne-forte); }
 .offre-resume dt { color: var(--piste-video); }
 .etape legend .num { color: var(--tete-lecture); }
-.field input, .field select, .field textarea { border-radius: 6px; background: #0b1619; border-color: var(--ligne-forte); }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--piste-video); box-shadow: 0 0 0 3px rgba(53,201,188,.25); }
-.field select { background-image: linear-gradient(45deg, transparent 50%, var(--piste-video) 50%), linear-gradient(135deg, var(--piste-video) 50%, transparent 50%); }
+.field input, .field select, .field textarea { border-radius: 6px; background: #0b1619 !important; border-color: var(--ligne-forte); color: var(--bone); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,176,0,.25); }
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); }
 .recap { border-left-color: var(--tete-lecture); border-radius: 4px; }
 .panel.direct { border-color: rgba(255,176,0,.45); }
-.check input { accent-color: var(--piste-video); }
+.check input { accent-color: var(--gold); }
 
 /* Appel final et pied de page */
 .closing { background: radial-gradient(50% 60% at 50% 60%, rgba(53,201,188,.14), transparent 70%); }
