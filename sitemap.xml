@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://guizcut.fr/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/portfolio.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/tarifs.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/fonctionnement.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/contact.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/mentions-legales.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/portfolio.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/pricing.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/how-it-works.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/contact.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://guizcut.fr/en/legal.html</loc><lastmod>2026-10-17</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://guizcut.fr/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/portfolio.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/portfolio.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/tarifs.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/tarifs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/tarifs.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/fonctionnement.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/fonctionnement.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/how-it-works.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/fonctionnement.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/contact.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/contact.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/mentions-legales.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/legal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/mentions-legales.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/portfolio.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/portfolio.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/pricing.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/tarifs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/tarifs.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/how-it-works.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/fonctionnement.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/how-it-works.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/fonctionnement.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/contact.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/contact.html"/>
+  </url>
+  <url>
+    <loc>https://guizcut.fr/en/legal.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guizcut.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guizcut.fr/en/legal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guizcut.fr/mentions-legales.html"/>
+  </url>
 </urlset>

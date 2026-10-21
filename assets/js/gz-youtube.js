@@ -30,7 +30,7 @@
     var id = fig.getAttribute("data-yt");
     var cadre = document.createElement("iframe");
     cadre.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) +
-      "?autoplay=1&playsinline=1&rel=0&modestbranding=1&cc_load_policy=0";
+      "?autoplay=1&playsinline=1&rel=0&modestbranding=1&cc_load_policy=1&cc_lang_pref=" + (document.documentElement.lang === "en" ? "en" : "fr");
     cadre.title = (document.documentElement.lang === "en" ? "YouTube player: " : "Lecteur YouTube : ") + fig.getAttribute("data-titre");
     cadre.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
     cadre.setAttribute("allowfullscreen", "");
