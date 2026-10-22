@@ -83,6 +83,26 @@
 .studio-hero .hw-lune { right: auto; left: 47%; top: 3%; width: clamp(60px, 6vw, 96px); opacity: .6; }
 @media (max-width: 900px) { .studio-hero .hw-lune { left: auto; right: -18px; top: 6px; width: 60px; } }
 
+/* « Qui sommes-nous ? » : expliquer la méthode avant de montrer la publicité */
+.about-method .head { align-items: end; }
+.about-method-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 360px); gap: clamp(28px, 6vw, 88px); align-items: center; }
+.about-method-copy { max-width: 58ch; }
+.about-method-copy > p { margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--bone); }
+.about-method-points { display: grid; gap: 0; list-style: none; margin: 26px 0 28px; padding: 0; }
+.about-method-points li { padding: 14px 0 14px 24px; border-top: 1px solid var(--ligne); color: var(--muted); position: relative; }
+.about-method-points li:last-child { border-bottom: 1px solid var(--ligne); }
+.about-method-points li::before { content: "✓"; position: absolute; left: 0; top: 14px; color: var(--tete-lecture); font-weight: 700; }
+.about-method-points strong { color: var(--bone); font-weight: 600; }
+.about-method-video { width: 100%; justify-self: end; }
+.about-method-video .gzv-media { aspect-ratio: 9 / 16; }
+.about-method-video figcaption { display: grid; gap: 4px; }
+.about-method-video figcaption span { color: var(--muted); }
+@media (max-width: 760px) {
+  .about-method-grid { grid-template-columns: 1fr; gap: 30px; }
+  .about-method-video { width: min(76vw, 340px); justify-self: center; }
+  .about-method-copy .btn { width: 100%; text-align: center; }
+}
+
 /* Identité « Salle de montage » : carte avant/après en fenêtre d'application, mini-timeline, décryptage */
 .studio-hero::before { background: radial-gradient(50% 50% at 50% 50%, rgba(53,201,188,.14), transparent 70%); }
 .hero-offre strong { background: var(--tete-lecture); border-radius: 4px; }
