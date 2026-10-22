@@ -339,10 +339,11 @@
       if (focus) etapes[n - 1].querySelector("legend").focus();
     }
     function remplirRecap() {
-      var E = f.elements, o = E.formule.options[E.formule.selectedIndex];
+      var E = f.elements, o = E.formule.options[E.formule.selectedIndex], codePromo = E.code_promo ? E.code_promo.value.trim() : "";
       recap.textContent = "";
       [[T("Formule", "Offer"), o ? o.text : ""], [T("Plateforme", "Platform"), E.plateforme.value],
-       [T("Durée", "Length"), E.duree.value + " min"], [T("Lien", "Link"), E.lien.value.trim() || T("à transmettre plus tard", "to be sent later")]]
+       [T("Durée", "Length"), E.duree.value + " min"], [T("Lien", "Link"), E.lien.value.trim() || T("à transmettre plus tard", "to be sent later")],
+       [T("Code promo", "Promo code"), codePromo || T("aucun", "none")]]
         .forEach(function (l) { var dt = document.createElement("dt"), dd = document.createElement("dd"); dt.textContent = l[0]; dd.textContent = l[1]; recap.appendChild(dt); recap.appendChild(dd); });
     }
     function verifier(noms) {
@@ -445,6 +446,7 @@
         ? { "pilote-29": "Pilot session — 3 clips, €29 excl. VAT", "devis": "Volume — quote request" }
         : { "pilote-29": "Séance pilote — 3 clips, 29 € HT", "devis": "Volume — demande de devis" };
       var E = f.elements;
+      var codePromo = E.code_promo ? E.code_promo.value.trim() : "";
       var formule = formules[E.formule.value] || E.formule.value;
       var corps = (EN ? [
         "Hello GUIZCUT,",
@@ -456,6 +458,7 @@
         "- Offer: " + formule,
         "- Video length: " + Number(E.duree.value) + " min",
         "- Video link: " + (E.lien.value.trim() || "to be sent later"),
+        "- Promo or ambassador code: " + (codePromo || "none"),
         "- Subtitle style: " + E.style.value,
         "- Notes: " + (E.consignes.value.trim() || "none"),
         "",
@@ -471,6 +474,7 @@
         "- Formule : " + formule,
         "- Durée de la vidéo : " + Number(E.duree.value) + " min",
         "- Lien vers la vidéo : " + (E.lien.value.trim() || "à transmettre plus tard"),
+        "- Code promo ou ambassadeur : " + (codePromo || "aucun"),
         "- Style de sous-titres : " + E.style.value,
         "- Consignes : " + (E.consignes.value.trim() || "aucune"),
         "",
