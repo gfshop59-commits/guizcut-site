@@ -488,3 +488,4 @@
   }
   window.GZConstruireDemande = construireDemande; // exposé pour les tests (aucun envoi)
 })();
+
