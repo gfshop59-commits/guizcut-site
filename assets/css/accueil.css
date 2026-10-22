@@ -97,6 +97,7 @@
 .about-method-video .gzv-media { aspect-ratio: 9 / 16; }
 .about-method-video figcaption { display: grid; gap: 4px; }
 .about-method-video figcaption span { color: var(--muted); }
+.about-method-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 @media (max-width: 760px) {
   .about-method-grid { grid-template-columns: 1fr; gap: 30px; }
   .about-method-video { width: min(76vw, 340px); justify-self: center; }
