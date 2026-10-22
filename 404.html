@@ -6,7 +6,7 @@
   <title>Page introuvable — GUIZCUT</title>
   <meta name="description" content="Page introuvable sur guizcut.fr : retour à l'accueil ou demande de séance pilote.">
   <meta name="robots" content="noindex">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://plausible.io; connect-src 'self' https://plausible.io; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://plausible.io 'sha256-c/Orw8Pew14XlgqaDMLYzGH2OjLZz1VoDhEdzymCm6Q='; connect-src 'self' https://plausible.io; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="no-referrer">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
@@ -33,7 +33,12 @@
   <link rel="stylesheet" href="/assets/css/halloween.css">
   <script src="/assets/js/saison-config.js"></script>
   <script src="/assets/js/saison.js"></script>
-  <script defer data-domain="guizcut.fr" src="https://plausible.io/js/script.js"></script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-SiFotU66j4zsYfl9EWj1j.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
 </head>
 <body data-page="404">
   <a class="skip" href="#contenu">Aller au contenu</a>
