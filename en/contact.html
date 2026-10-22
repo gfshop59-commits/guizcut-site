@@ -113,6 +113,7 @@
                 <div class="field"><label for="lien">Link to the video</label><input id="lien" name="lien" type="url" inputmode="url" placeholder="https://…" aria-describedby="h-lien e-lien"><span class="hint" id="h-lien">Optional. Don't email us a video file: we will tell you how to send it.</span><span class="error" id="e-lien" aria-live="polite"></span></div>
                 <div class="field"><label for="duree">Video length (min) *</label><input id="duree" name="duree" type="number" min="1" max="600" step="1" inputmode="numeric" required aria-describedby="h-duree a-duree e-duree"><span class="hint" id="h-duree">Pilot session: 45 min maximum.</span><span class="avis" id="a-duree" aria-live="polite"></span><span class="error" id="e-duree" aria-live="polite"></span></div>
               </div>
+              <div class="field"><label for="promo-code">Promo or ambassador code</label><input id="promo-code" name="code_promo" type="text" inputmode="text" autocomplete="off" maxlength="40" placeholder="Optional" aria-describedby="h-promo-code"><span class="hint" id="h-promo-code">Optional. If a creator gave you a code, enter it here. We will check it before confirming the price.</span></div>
               <div class="etape-actions"><button class="btn btn-gold" type="button" data-suivant>Continue</button></div>
             </fieldset>
             <fieldset class="etape" data-etape="2">
@@ -206,3 +207,4 @@
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
+
