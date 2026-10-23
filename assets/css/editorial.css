@@ -1,0 +1,21 @@
+/* Editorial service pages: readable long-form text in the existing studio identity. */
+.editorial .page-hero h1 { max-width: 1050px; font-size: clamp(2.6rem, 6.4vw, 6.1rem); overflow-wrap: anywhere; }
+.editorial .page-hero .lead { max-width: 760px; }
+.editorial .page-hero .actions { margin-top: 28px; }
+.breadcrumbs { margin-bottom: 24px; color: var(--muted); font-size: .9rem; }
+.reading-layout { display: grid; grid-template-columns: minmax(180px, 260px) minmax(0, 760px); gap: clamp(28px, 5vw, 80px); padding-top: 48px; padding-bottom: 64px; align-items: start; }
+.reading-toc { position: sticky; top: calc(var(--header-h) + 24px); padding: 22px; background: var(--panneau); border: 1px solid var(--ligne-forte); border-radius: 8px; font-size: .95rem; }
+.reading-toc ol { padding-left: 20px; margin-bottom: 0; }
+.reading-toc li + li { margin-top: 12px; }
+.reading-section { margin-bottom: 48px; }
+.reading-section h2 { margin-bottom: 20px; font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.2; scroll-margin-top: calc(var(--header-h) + 24px); }
+.reading-section p + p, .reading-section ul + p, .reading-section p + ul { margin-top: 18px; }
+.reading-section li + li { margin-top: 10px; }
+.reading-section a { color: var(--turq); }
+.reading-section blockquote { margin: 24px 0; border-left: 3px solid var(--gold); padding: 18px 22px; background: var(--panneau); }
+.editorial .cond h3 a { text-decoration: underline; }
+@media (max-width: 800px) {
+  .reading-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 24px; }
+  .reading-toc { position: static; }
+  .editorial .page-hero .actions { align-items: stretch; }
+}
