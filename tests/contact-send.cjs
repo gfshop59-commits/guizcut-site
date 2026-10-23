@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
-const source=fs.readFileSync(process.argv[2]||'assets/js/main.js','utf8');
+const source=fs.readFileSync(process.argv[2]||'assets/js/main.js','utf8').replace(/\r\n/g,'\n');
 const start=source.indexOf('    function envoyer(demande)');
 const end=source.indexOf('\n  }\n',start);
 const code=source.slice(start,end);
