@@ -663,3 +663,8 @@ h1 em, h2 em, .accent { color: var(--piste-titres); }
 @media (prefers-reduced-motion: reduce) {
   .storyboard li:hover, .btn-gold:hover { transform: none; }
 }
+
+/* Service and guide links, visible on the French pages. */
+.footer-resources { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--ligne); font-size: .95rem; }
+.footer-resources a { color: var(--muted); }
+.footer-resources a:hover { color: var(--gold); }
