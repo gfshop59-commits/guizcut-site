@@ -407,8 +407,16 @@
     function derniereDemande() { try { return Number(sessionStorage.getItem("gz-envoi") || 0); } catch (e) { return 0; } }
     function envoyer(demande) {
       var piege = f.elements.site_web && f.elements.site_web.value;
-      if (piege || Date.now() - ouverture < 3000) {   // robot probable : rien n'est transmis, réponse neutre
-        afficher(T("Demande envoyée.", "Request sent."), T("Merci : nous vous répondons par e-mail.", "Thank you: we will reply by email."), demande, false);
+      if (piege) {   // Rien n'est transmis : ne jamais confirmer un envoi inexistant.
+        afficher(T("Votre demande n'a pas été envoyée.", "Your request has not been sent."),
+          T("Le contrôle anti-spam bloque cet envoi. Vérifiez le formulaire ou utilisez votre messagerie ci-dessous. Votre saisie est conservée.",
+            "The spam check blocked this request. Check the form or use your email app below. Your input has been kept."), demande, true, true);
+        return;
+      }
+      if (Date.now() - ouverture < 3000) {
+        afficher(T("Votre demande n'a pas encore été envoyée.", "Your request has not been sent yet."),
+          T("Patientez trois secondes après l'ouverture du formulaire puis réessayez, ou utilisez votre messagerie ci-dessous. Votre saisie est conservée.",
+            "Wait three seconds after opening the form and try again, or use your email app below. Your input has been kept."), demande, true, true);
         return;
       }
       if (Date.now() - derniereDemande() < 60000) {
@@ -425,7 +433,7 @@
           replyto: f.elements.email.value.trim(), email: f.elements.email.value.trim(), message: demande.corps, botcheck: "" }),
         signal: controle ? controle.signal : undefined
       }).then(function (r) {
-        return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || j.success === false) throw new Error(j.message || "HTTP " + r.status); });
+        return r.json().catch(function () { return null; }).then(function (j) { if (!r.ok || !j || j.success !== true) throw new Error((j && j.message) || "HTTP " + r.status); });
       }).then(function () {
         try { sessionStorage.setItem("gz-envoi", String(Date.now())); } catch (e) { /* stockage indisponible */ }
         afficher(T("Demande envoyée à contact@guizcut.fr.", "Request sent to contact@guizcut.fr."), T("Merci ! Nous vous répondons par e-mail, à l'adresse indiquée. Récapitulatif :", "Thank you! We will reply by email to the address you gave. Summary:"), demande, false);
@@ -488,4 +496,3 @@
   }
   window.GZConstruireDemande = construireDemande; // exposé pour les tests (aucun envoi)
 })();
-
